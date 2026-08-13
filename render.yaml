@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nexus-auth-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
+      - key: TO_EMAIL
+        value: irfangames1065@gmail.com
