@@ -12,18 +12,24 @@ export const Home = () => {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
-    if (!msgForm.name || !msgForm.email || !msgForm.message) {
-      setToast({ type: 'error', message: 'Please fill in your name, email, and message.' });
+
+    const name = msgForm.name.trim();
+    const email = msgForm.email.trim();
+    const subject = msgForm.subject.trim();
+    const message = msgForm.message.trim();
+
+    if (!name || !email || !subject || !message) {
+      setToast({ type: 'error', message: 'Please fill in your name, email, subject, and message.' });
       return;
     }
 
     setSending(true);
     try {
       const res = await api.post('/send-message', {
-        senderName: msgForm.name,
-        senderEmail: msgForm.email,
-        subject: msgForm.subject,
-        message: msgForm.message
+        senderName: name,
+        senderEmail: email,
+        subject,
+        message
       });
 
       if (res.data?.success) {

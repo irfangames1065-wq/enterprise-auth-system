@@ -54,7 +54,8 @@ const isConnected = () => mongoose.connection.readyState === 1;
 class UserModel {
   static async findOne(query) {
     if (isConnected()) {
-      const q = User.findOne(query.email ? { email: query.email.toLowerCase() } : query);
+      const where = query.email ? { email: query.email.toLowerCase() } : query;
+      const q = User.findOne(where);
       if (query.select === '+password') return q.select('+password');
       return q;
     }
@@ -62,6 +63,14 @@ class UserModel {
     if (query.email) {
       return inMemoryUsers.get(query.email.toLowerCase()) || null;
     }
+
+    if (query._id) {
+      for (const u of inMemoryUsers.values()) {
+        if (u._id === query._id || u.id === query._id) return u;
+      }
+      return null;
+    }
+
     if (query.resetPasswordToken) {
       for (const u of inMemoryUsers.values()) {
         if (u.resetPasswordToken === query.resetPasswordToken && u.resetPasswordExpire > new Date()) {
@@ -108,6 +117,12 @@ class UserModel {
       },
       save: async function () {
         this.updatedAt = new Date();
+
+        if (this.password && !this.password.startsWith('$2')) {
+          const salt = await bcrypt.genSalt(10);
+          this.password = await bcrypt.hash(this.password, salt);
+        }
+
         inMemoryUsers.set(this.email, this);
         return this;
       }

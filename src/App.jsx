@@ -25,14 +25,14 @@ export const App = () => {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="relative min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+          <div className="relative isolate min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors duration-300">
             {/* Ambient Background Lights */}
             <div className="bg-ambient-glow glow-top-left" />
             <div className="bg-ambient-glow glow-bottom-right" />
 
             <Navbar />
 
-            <main className="flex-1 relative z-10">
+            <main className="relative z-0 flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />

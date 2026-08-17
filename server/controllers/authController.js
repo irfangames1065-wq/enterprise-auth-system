@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/UserModel');
 const { generateAccessToken, generateRefreshToken, verifyRefreshToken } = require('../utils/jwt');
 const { sendOtpEmail, sendWelcomeEmail, sendPasswordResetEmail } = require('../services/emailService');
@@ -35,16 +36,24 @@ const register = async (req, res, next) => {
       isVerified: false
     });
 
-    const emailResult = await sendOtpEmail(user, otp);
+    try {
+      const emailResult = await sendOtpEmail(user, otp);
 
-    return res.status(201).json({
-      success: true,
-      message: `Registration successful! An OTP code was sent to ${user.email}.`,
-      email: user.email,
-      requiresOtp: true,
-      demoMode: emailResult.demoMode,
-      otpPreview: emailResult.demoMode ? otp : undefined
-    });
+      return res.status(201).json({
+        success: true,
+        message: `Registration successful! An OTP code was sent to ${user.email}.`,
+        email: user.email,
+        requiresOtp: true,
+        demoMode: emailResult.demoMode,
+        otpPreview: emailResult.demoMode ? otp : undefined
+      });
+    } catch (error) {
+      console.error('[AUTH] sendOtpEmail failed during register:', error.message);
+      return res.status(500).json({
+        success: false,
+        message: 'We could not send the OTP email right now. Please try again in a moment.'
+      });
+    }
   } catch (error) {
     next(error);
   }
@@ -137,14 +146,22 @@ const resendOtp = async (req, res, next) => {
     user.otpExpire = new Date(Date.now() + 10 * 60 * 1000);
     if (typeof user.save === 'function') await user.save();
 
-    const emailResult = await sendOtpEmail(user, otp);
+    try {
+      const emailResult = await sendOtpEmail(user, otp);
 
-    return res.status(200).json({
-      success: true,
-      message: `A new 6-digit OTP has been sent to ${user.email}.`,
-      demoMode: emailResult.demoMode,
-      otpPreview: emailResult.demoMode ? otp : undefined
-    });
+      return res.status(200).json({
+        success: true,
+        message: `A new 6-digit OTP has been sent to ${user.email}.`,
+        demoMode: emailResult.demoMode,
+        otpPreview: emailResult.demoMode ? otp : undefined
+      });
+    } catch (error) {
+      console.error('[AUTH] sendOtpEmail failed during resendOtp:', error.message);
+      return res.status(500).json({
+        success: false,
+        message: 'Unable to resend the OTP email right now. Please try again.'
+      });
+    }
   } catch (error) {
     next(error);
   }
@@ -181,16 +198,24 @@ const login = async (req, res, next) => {
       user.otpExpire = new Date(Date.now() + 10 * 60 * 1000);
       if (typeof user.save === 'function') await user.save();
 
-      const emailResult = await sendOtpEmail(user, otp);
+      try {
+        const emailResult = await sendOtpEmail(user, otp);
 
-      return res.status(200).json({
-        success: false,
-        requiresOtp: true,
-        message: 'Account not verified. A new OTP has been dispatched to your email.',
-        email: user.email,
-        demoMode: emailResult.demoMode,
-        otpPreview: emailResult.demoMode ? otp : undefined
-      });
+        return res.status(200).json({
+          success: false,
+          requiresOtp: true,
+          message: 'Account not verified. A new OTP has been dispatched to your email.',
+          email: user.email,
+          demoMode: emailResult.demoMode,
+          otpPreview: emailResult.demoMode ? otp : undefined
+        });
+      } catch (error) {
+        console.error('[AUTH] sendOtpEmail failed during login:', error.message);
+        return res.status(500).json({
+          success: false,
+          message: 'Your account needs verification, but we could not send the OTP email right now.'
+        });
+      }
     }
 
     user.lastLogin = new Date();
@@ -308,16 +333,24 @@ const forgotPassword = async (req, res, next) => {
     user.resetPasswordExpire = new Date(Date.now() + 15 * 60 * 1000);
     if (typeof user.save === 'function') await user.save();
 
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password?token=${otp}&email=${encodeURIComponent(user.email)}`;
-    const emailResult = await sendPasswordResetEmail(user, resetUrl);
+    try {
+      const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password?token=${otp}&email=${encodeURIComponent(user.email)}`;
+      const emailResult = await sendPasswordResetEmail(user, resetUrl);
 
-    return res.status(200).json({
-      success: true,
-      message: `Password reset link dispatched to ${user.email}.`,
-      demoMode: emailResult.demoMode,
-      tokenPreview: emailResult.demoMode ? otp : undefined,
-      resetUrlPreview: emailResult.demoMode ? resetUrl : undefined
-    });
+      return res.status(200).json({
+        success: true,
+        message: `Password reset link dispatched to ${user.email}.`,
+        demoMode: emailResult.demoMode,
+        tokenPreview: emailResult.demoMode ? otp : undefined,
+        resetUrlPreview: emailResult.demoMode ? resetUrl : undefined
+      });
+    } catch (error) {
+      console.error('[AUTH] sendPasswordResetEmail failed:', error.message);
+      return res.status(500).json({
+        success: false,
+        message: 'We could not send the password reset email right now.'
+      });
+    }
   } catch (error) {
     next(error);
   }
@@ -347,7 +380,8 @@ const resetPassword = async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'Invalid or expired password reset token.' });
     }
 
-    user.password = newPassword;
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
     user.resetPasswordToken = null;
     user.resetPasswordExpire = null;
     if (typeof user.save === 'function') await user.save();

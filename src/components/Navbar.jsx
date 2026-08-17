@@ -18,7 +18,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/80 transition-colors">
+    <nav className="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
@@ -105,14 +105,17 @@ export const Navbar = () => {
                       My Profile
                     </Link>
 
-                    <Link
-                      to="/settings"
-                      onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        navigate('/settings');
+                      }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition"
                     >
                       <Settings className="w-4 h-4 text-purple-400" />
                       Security Settings
-                    </Link>
+                    </button>
 
                     {isAdmin && (
                       <Link
@@ -197,13 +200,16 @@ export const Navbar = () => {
               >
                 Profile
               </Link>
-              <Link
-                to="/settings"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block text-sm font-medium text-slate-300 py-1.5"
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/settings');
+                }}
+                className="block w-full text-left text-sm font-medium text-slate-300 py-1.5"
               >
                 Settings
-              </Link>
+              </button>
               {isAdmin && (
                 <Link
                   to="/admin"

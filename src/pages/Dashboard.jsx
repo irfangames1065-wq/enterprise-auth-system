@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShieldCheck, User, Mail, Shield, Lock, Key, Clock, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Dashboard = () => {
   const { user, isAdmin } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
@@ -145,13 +146,14 @@ export const Dashboard = () => {
               <span>Update Profile & Avatar</span>
               <ArrowRight className="w-4 h-4 text-slate-500" />
             </Link>
-            <Link
-              to="/settings"
+            <button
+              type="button"
+              onClick={() => navigate('/settings', { state: { openPasswordModal: true } })}
               className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-200 transition"
             >
               <span>Change Password</span>
               <ArrowRight className="w-4 h-4 text-slate-500" />
-            </Link>
+            </button>
             {isAdmin && (
               <Link
                 to="/admin"
