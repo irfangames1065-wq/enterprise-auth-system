@@ -135,34 +135,34 @@ export const VerifyOtp = () => {
           <div className="inline-flex p-3 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 mb-1">
             <KeyRound className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-extrabold text-white">Security OTP Verification</h2>
-          <p className="text-xs text-slate-400">Enter the 6-digit code sent to your email</p>
+          <h2 className="text-2xl font-extrabold" style={{ color: 'var(--heading)' }}>Security OTP Verification</h2>
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Enter the 6-digit code sent to your email</p>
         </div>
 
         {otpPreview && (
-          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs text-center flex items-center justify-center gap-2">
+          <div className="p-3 rounded-xl border text-xs text-center flex items-center justify-center gap-2" style={{ background: 'rgba(245,158,11,0.08)', borderColor: 'rgba(245,158,11,0.28)', color: '#fbbf24' }}>
             <CheckCircle2 className="w-4 h-4 text-amber-400" />
-            Dev OTP Code Preview: <strong className="text-white tracking-widest text-base font-bold">{otpPreview}</strong>
+            Dev OTP Code Preview: <strong className="tracking-widest text-base font-bold" style={{ color: 'var(--heading)' }}>{otpPreview}</strong>
           </div>
         )}
 
-        <div className="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-6">
+        <div className="theme-card p-5 sm:p-8 rounded-3xl space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Verification Email</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Verification Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition"
               />
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-3 text-center">6-Digit Security OTP Code</label>
-              <div className="flex gap-2 justify-center" onPaste={handlePaste}>
+              <label className="text-xs font-semibold block mb-3 text-center" style={{ color: 'var(--text-muted)' }}>6-Digit Security OTP Code</label>
+              <div className="flex gap-2 justify-center overflow-x-auto pb-1" onPaste={handlePaste}>
                 {otpDigits.map((digit, idx) => (
                   <input
                     key={idx}
@@ -173,19 +173,19 @@ export const VerifyOtp = () => {
                     value={digit}
                     onChange={(e) => handleChange(idx, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(idx, e)}
-                    className="w-11 h-12 text-center text-xl font-bold bg-slate-950/90 border border-slate-800 rounded-xl text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition"
+                    className="theme-input w-11 h-12 text-center text-xl font-bold rounded-xl focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition"
                   />
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span>Code expires in: <strong className="text-indigo-400">{formatTimer(timer)}</strong></span>
+            <div className="flex items-center justify-between text-xs" style={{ color: 'var(--text-muted)' }}>
+              <span>Code expires in: <strong style={{ color: '#818cf8' }}>{formatTimer(timer)}</strong></span>
               <button
                 type="button"
                 onClick={handleResend}
                 disabled={resending}
-                className="text-indigo-400 font-semibold hover:underline flex items-center gap-1 disabled:opacity-50"
+                className="font-semibold hover:underline flex items-center gap-1 disabled:opacity-50" style={{ color: '#818cf8' }}
               >
                 <RefreshCw className={`w-3 h-3 ${resending ? 'animate-spin' : ''}`} />
                 Resend OTP
@@ -195,7 +195,7 @@ export const VerifyOtp = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="theme-btn-primary w-full py-3 rounded-xl font-bold text-sm shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? 'Verifying Code...' : 'Verify OTP & Enter Portal'}
               <ArrowRight className="w-4 h-4" />

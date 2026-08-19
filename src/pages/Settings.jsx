@@ -76,23 +76,23 @@ export const Settings = () => {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-6"
+        className="theme-card p-4 sm:p-8 rounded-3xl space-y-6"
       >
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-4" style={{ borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-3">
             <div className="p-2.5 rounded-xl bg-purple-600/20 text-purple-400">
               <Lock className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white">Security & Password Management</h2>
-              <p className="text-xs text-slate-400">Update your account credentials and security preferences</p>
+              <h2 className="text-xl font-bold" style={{ color: 'var(--heading)' }}>Security & Password Management</h2>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Update your account credentials and security preferences</p>
             </div>
           </div>
 
           <button
             type="button"
             onClick={() => setShowPasswordModal(true)}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-lg shadow-purple-500/20 transition"
+            className="theme-btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold shadow-lg transition"
           >
             <KeyRound className="w-4 h-4" />
             Change Password
@@ -100,40 +100,40 @@ export const Settings = () => {
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-400 mb-3">
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--text-muted)' }}>
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               Protection
             </div>
-            <p className="text-lg font-bold text-white">JWT + Bcrypt</p>
-            <p className="mt-2 text-xs text-slate-400">Access tokens and password hashing remain active and verified for this account.</p>
+            <p className="text-lg font-bold" style={{ color: 'var(--heading)' }}>JWT + Bcrypt</p>
+            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>Access tokens and password hashing remain active and verified for this account.</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-400 mb-3">
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--text-muted)' }}>
               <CheckCircle2 className="w-4 h-4 text-indigo-400" />
               Session
             </div>
-            <p className="text-lg font-bold text-white">Authenticated</p>
-            <p className="mt-2 text-xs text-slate-400">Signed in as {user?.email || 'your account'} with a valid access token.</p>
+            <p className="text-lg font-bold" style={{ color: 'var(--heading)' }}>Authenticated</p>
+            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>Signed in as {user?.email || 'your account'} with a valid access token.</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-400 mb-3">
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--text-muted)' }}>
               <ShieldAlert className="w-4 h-4 text-amber-400" />
               Risk
             </div>
-            <p className="text-lg font-bold text-white">Low</p>
-            <p className="mt-2 text-xs text-slate-400">Use strong passwords, verify current credentials before changing them, and keep sessions private.</p>
+            <p className="text-lg font-bold" style={{ color: 'var(--heading)' }}>Low</p>
+            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>Use strong passwords, verify current credentials before changing them, and keep sessions private.</p>
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-800 space-y-2 text-xs text-slate-400">
-          <p className="font-semibold text-slate-300 flex items-center gap-1.5">
+        <div className="pt-4 border-t space-y-2 text-xs" style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}>
+          <p className="font-semibold flex items-center gap-1.5" style={{ color: 'var(--text)' }}>
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             Active Security Protocols:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-[11px] text-slate-400 pl-1">
+          <ul className="list-disc list-inside space-y-1 text-[11px] pl-1" style={{ color: 'var(--text-muted)' }}>
             <li>Bcrypt Password Salt Factor: 10 rounds</li>
             <li>JWT Access Token expiration: 15 minutes</li>
             <li>HttpOnly Refresh Token expiration: 7 days</li>
@@ -155,16 +155,17 @@ export const Settings = () => {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 16, opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="w-full max-w-lg rounded-3xl border border-slate-800 bg-slate-900/95 p-6 shadow-2xl"
+              className="w-[calc(100%-1rem)] max-w-lg rounded-3xl p-4 sm:p-6 shadow-2xl"
+              style={{ background: 'var(--surface-strong)', border: '1px solid var(--border)' }}
             >
-              <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-800">
+              <div className="flex items-center justify-between gap-4 pb-4 border-b" style={{ borderColor: 'var(--border)' }}>
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 rounded-xl bg-purple-600/20 text-purple-400">
                     <KeyRound className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Change Password</h3>
-                    <p className="text-xs text-slate-400">Authenticated as {user?.email || 'your account'}</p>
+                    <h3 className="text-lg font-bold" style={{ color: 'var(--heading)' }}>Change Password</h3>
+                    <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Authenticated as {user?.email || 'your account'}</p>
                   </div>
                 </div>
 
@@ -174,7 +175,7 @@ export const Settings = () => {
                     setShowPasswordModal(false);
                     navigate('/settings', { replace: true, state: {} });
                   }}
-                  className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                  className="p-2 rounded-lg transition" style={{ color: 'var(--text-muted)' }}
                   aria-label="Close password change" 
                 >
                   <X className="w-4 h-4" />
@@ -183,38 +184,38 @@ export const Settings = () => {
 
               <form onSubmit={handleChangePassword} className="space-y-4 pt-5">
                 <div>
-                  <label className="text-xs font-semibold text-slate-400 block mb-1.5">Current Password</label>
+                  <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Current Password</label>
                   <input
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Enter your current password"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-purple-500 focus:outline-none transition"
+                    className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-purple-500 focus:outline-none transition"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-400 block mb-1.5">New Password</label>
+                  <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>New Password</label>
                   <input
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder="Enter a new password"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-purple-500 focus:outline-none transition"
+                    className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-purple-500 focus:outline-none transition"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-400 block mb-1.5">Confirm New Password</label>
+                  <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Confirm New Password</label>
                   <input
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Re-enter your new password"
                     required
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-purple-500 focus:outline-none transition"
+                    className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-purple-500 focus:outline-none transition"
                   />
                 </div>
 
@@ -225,14 +226,14 @@ export const Settings = () => {
                       resetPasswordForm();
                       setShowPasswordModal(false);
                     }}
-                    className="px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-950 text-slate-300 text-xs font-semibold hover:bg-slate-800 transition"
+                    className="px-4 py-2.5 rounded-xl border text-xs font-semibold transition" style={{ background: 'var(--panel-soft)', borderColor: 'var(--border)', color: 'var(--text)' }}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-lg shadow-purple-500/25 transition disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="theme-btn-primary px-4 py-2.5 rounded-xl text-xs font-semibold shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     <KeyRound className="w-4 h-4" />
                     {loading ? 'Updating...' : 'Update Password'}
