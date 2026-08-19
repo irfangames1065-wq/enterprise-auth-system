@@ -50,23 +50,23 @@ export const Profile = () => {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-6"
+        className="theme-card p-4 sm:p-8 rounded-3xl space-y-6"
       >
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
+        <div className="flex items-center gap-3 border-b pb-4" style={{ borderColor: 'var(--border)' }}>
           <div className="p-2.5 rounded-xl bg-indigo-600/20 text-indigo-400">
             <User className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Profile Customization</h2>
-            <p className="text-xs text-slate-400">Manage your avatar and personal display details</p>
+            <h2 className="text-xl font-bold" style={{ color: 'var(--heading)' }}>Profile Customization</h2>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Manage your avatar and personal display details</p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Avatar Preview & Presets */}
           <div className="space-y-3">
-            <label className="text-xs font-semibold text-slate-400 block">Avatar Selection</label>
-            <div className="flex items-center gap-4">
+            <label className="text-xs font-semibold block" style={{ color: 'var(--text-muted)' }}>Avatar Selection</label>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <img
                 src={avatar}
                 alt="Avatar Preview"
@@ -88,30 +88,31 @@ export const Profile = () => {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1.5">Full Name</label>
+            <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Full Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+              className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition"
             />
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1.5">Email Address (Read Only)</label>
+            <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Email Address (Read Only)</label>
             <input
               type="email"
               value={user?.email || ''}
               disabled
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950/40 border border-slate-800/60 text-slate-400 text-sm cursor-not-allowed"
+              className="w-full px-4 py-2.5 rounded-xl text-sm cursor-not-allowed opacity-80"
+              style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)', color: 'var(--text-muted)' }}
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition disabled:opacity-50 flex items-center justify-center gap-2"
+            className="theme-btn-primary w-full py-3 rounded-xl font-bold text-sm shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
           >
             <Save className="w-4 h-4" />
             {loading ? 'Saving Changes...' : 'Save Profile Changes'}

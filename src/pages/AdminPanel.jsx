@@ -74,64 +74,62 @@ export const AdminPanel = () => {
     <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
       <Toast message={toast?.message} type={toast?.type} onClose={() => setToast(null)} />
 
-      {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-6" style={{ borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-2xl bg-purple-600/20 border border-purple-500/30 text-purple-400">
             <Shield className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-extrabold text-white">System Admin Console</h1>
-            <p className="text-xs text-slate-400">Role-Based User Management & Analytics</p>
+            <h1 className="text-2xl font-extrabold" style={{ color: 'var(--heading)' }}>System Admin Console</h1>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Role-Based User Management & Analytics</p>
           </div>
         </div>
 
         <button
           onClick={fetchAdminData}
           disabled={loading}
-          className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-2 transition"
+          className="px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition"
+          style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)', color: 'var(--text)' }}
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           Refresh Metrics
         </button>
       </div>
 
-      {/* Analytics Cards */}
       {stats && (
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <span className="text-xs text-slate-500 font-semibold block mb-1">Total System Users</span>
-            <p className="text-2xl font-black text-white">{stats.totalUsers}</p>
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <span className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Total System Users</span>
+            <p className="text-2xl font-black" style={{ color: 'var(--heading)' }}>{stats.totalUsers}</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <span className="text-xs text-slate-500 font-semibold block mb-1">Verified Accounts</span>
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <span className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Verified Accounts</span>
             <p className="text-2xl font-black text-emerald-400">{stats.verifiedUsers}</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <span className="text-xs text-slate-500 font-semibold block mb-1">Admin Controllers</span>
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <span className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Admin Controllers</span>
             <p className="text-2xl font-black text-purple-400">{stats.adminCount}</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <span className="text-xs text-slate-500 font-semibold block mb-1">Target SMTP Email</span>
-            <p className="text-xs font-bold text-indigo-300 truncate mt-1">irfangames1065@gmail.com</p>
+          <div className="p-5 rounded-2xl" style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)' }}>
+            <span className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Target SMTP Email</span>
+            <p className="text-xs font-bold truncate mt-1" style={{ color: '#818cf8' }}>irfangames1065@gmail.com</p>
           </div>
         </div>
       )}
 
-      {/* User Management Table */}
-      <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-4">
-        <h3 className="text-base font-bold text-white flex items-center gap-2">
+      <div className="p-6 rounded-3xl space-y-4" style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
+        <h3 className="text-base font-bold flex items-center gap-2" style={{ color: 'var(--heading)' }}>
           <Users className="w-4 h-4 text-indigo-400" />
           Registered Users Management ({users.length})
         </h3>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300 border-collapse">
+          <table className="w-full text-left text-xs border-collapse" style={{ color: 'var(--text)' }}>
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 font-semibold">
+              <tr className="border-b font-semibold" style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}>
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Role</th>
                 <th className="py-3 px-4">Status</th>
@@ -139,25 +137,26 @@ export const AdminPanel = () => {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody style={{ borderColor: 'var(--border)' }}>
               {users.map((u) => (
-                <tr key={u._id || u.id} className="hover:bg-slate-850/50 transition">
+                <tr key={u._id || u.id} className="transition" style={{ borderBottom: '1px solid var(--border)' }}>
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={u.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'}
                         alt={u.name}
-                        className="w-8 h-8 rounded-lg object-cover border border-slate-700"
+                        className="w-8 h-8 rounded-lg object-cover border"
+                        style={{ borderColor: 'var(--border)' }}
                       />
                       <div>
-                        <p className="font-semibold text-white">{u.name}</p>
-                        <p className="text-[11px] text-slate-400">{u.email}</p>
+                        <p className="font-semibold" style={{ color: 'var(--heading)' }}>{u.name}</p>
+                        <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>{u.email}</p>
                       </div>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${u.role === 'admin' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'bg-slate-800 text-slate-400'}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${u.role === 'admin' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-400'}`}>
                       {u.role}
                     </span>
                   </td>
@@ -172,7 +171,7 @@ export const AdminPanel = () => {
                     )}
                   </td>
 
-                  <td className="py-3.5 px-4 text-slate-400">
+                  <td className="py-3.5 px-4" style={{ color: 'var(--text-muted)' }}>
                     {new Date(u.createdAt).toLocaleDateString()}
                   </td>
 
@@ -181,14 +180,16 @@ export const AdminPanel = () => {
                       <button
                         onClick={() => handleToggleRole(u._id || u.id, u.role)}
                         disabled={actionLoading}
-                        className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-medium text-slate-200 transition"
+                        className="px-2.5 py-1 rounded-lg text-[11px] font-medium transition"
+                        style={{ background: 'var(--panel-soft)', border: '1px solid var(--border)', color: 'var(--text)' }}
                       >
                         Set as {u.role === 'admin' ? 'User' : 'Admin'}
                       </button>
                       <button
                         onClick={() => handleDeleteUser(u._id || u.id)}
                         disabled={actionLoading}
-                        className="p-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900/60 text-rose-400 transition"
+                        className="p-1.5 rounded-lg transition"
+                        style={{ background: 'rgba(244,63,94,0.08)', border: '1px solid rgba(244,63,94,0.2)', color: '#fb7185' }}
                         title="Delete User"
                       >
                         <Trash2 className="w-3.5 h-3.5" />

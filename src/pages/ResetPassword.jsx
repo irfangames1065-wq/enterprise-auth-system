@@ -64,62 +64,62 @@ export const ResetPassword = () => {
           <div className="inline-flex p-3 rounded-2xl bg-purple-600/20 border border-purple-500/30 text-purple-400 mb-1">
             <KeyRound className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-extrabold text-white">Set New Password</h2>
-          <p className="text-xs text-slate-400">Enter your reset token and new credentials</p>
+          <h2 className="text-2xl font-extrabold" style={{ color: 'var(--heading)' }}>Set New Password</h2>
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Enter your reset token and new credentials</p>
         </div>
 
-        <div className="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-6">
+        <div className="theme-card p-5 sm:p-8 rounded-3xl space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Email Address</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Email Address</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition"
               />
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Reset Token / OTP</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Reset Token / OTP</label>
               <input
                 type="text"
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
                 placeholder="Paste token or OTP code"
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition font-mono"
+                className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition font-mono"
               />
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">New Password</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>New Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <Lock className="w-4 h-4 absolute left-3.5 top-3.5 text-indigo-400/80" />
                 <input
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                  className="theme-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Confirm New Password</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Confirm New Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <Lock className="w-4 h-4 absolute left-3.5 top-3.5 text-indigo-400/80" />
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                  className="theme-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:border-indigo-500 focus:outline-none transition"
                 />
               </div>
             </div>
@@ -127,7 +127,7 @@ export const ResetPassword = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-500/25 transition disabled:opacity-50 flex items-center justify-center gap-2"
+              className="theme-btn-primary w-full py-3 rounded-xl font-bold text-sm shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? 'Updating Password...' : 'Save New Password'}
               <ArrowRight className="w-4 h-4" />
@@ -135,9 +135,9 @@ export const ResetPassword = () => {
           </form>
         </div>
 
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-xs" style={{ color: 'var(--text-muted)' }}>
           Return to{' '}
-          <Link to="/login" className="text-indigo-400 font-semibold hover:underline">
+          <Link to="/login" className="font-semibold hover:underline" style={{ color: '#818cf8' }}>
             Sign In
           </Link>
         </p>

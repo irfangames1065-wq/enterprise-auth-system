@@ -5,16 +5,17 @@ export const LoadingSpinner = ({ fullScreen = false, size = 'md' }) => {
     size === 'sm' ? 'w-5 h-5 border-2' : size === 'lg' ? 'w-12 h-12 border-4' : 'w-8 h-8 border-3';
 
   const spinner = (
-    <div
-      className={`${sizeClasses} border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin`}
-    />
+    <div className="relative flex items-center justify-center">
+      <div className={`${sizeClasses} border-cyan-400/25 border-t-cyan-400 border-r-violet-400 rounded-full animate-spin`} />
+      <div className="absolute inset-0 rounded-full border border-violet-400/25 animate-ping" />
+    </div>
   );
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-3">
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-3 backdrop-blur-sm" style={{ background: 'rgba(2, 6, 23, 0.62)' }}>
         {spinner}
-        <p className="text-sm text-slate-400 font-medium animate-pulse">Loading Nexus System...</p>
+        <div className="robot-status"><span className="dot" />Loading Robot Core...</div>
       </div>
     );
   }

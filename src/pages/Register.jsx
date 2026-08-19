@@ -71,68 +71,68 @@ export const Register = () => {
         className="w-full max-w-md space-y-6"
       >
         <div className="text-center space-y-2">
-          <div className="inline-flex p-3 rounded-2xl bg-purple-600/20 border border-purple-500/30 text-purple-400 mb-1">
+          <div className="inline-flex p-3 rounded-2xl border mb-1" style={{ background: 'rgba(34,211,238,0.12)', borderColor: 'rgba(34,211,238,0.35)', color: '#67e8f9' }}>
             <Shield className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-extrabold text-white">Create Account</h2>
-          <p className="text-xs text-slate-400">Join Nexus Security Platform</p>
+          <div className="robot-status mx-auto"><span className="dot" />New AI Node</div>
+          <h2 className="text-2xl font-extrabold" style={{ color: 'var(--heading)' }}>Create Account</h2>
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Register to the MyApp command network</p>
         </div>
 
-        <div className="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-2xl shadow-2xl space-y-6">
+        <div className="robot-panel p-5 sm:p-8 rounded-3xl space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Full Name</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Full Name</label>
               <div className="relative">
-                <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <User className="w-4 h-4 absolute left-3.5 top-3.5 text-cyan-400/80" />
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                  className="theme-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Email Address</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Email Address</label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <Mail className="w-4 h-4 absolute left-3.5 top-3.5 text-cyan-400/80" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                  className="theme-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Password</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <Lock className="w-4 h-4 absolute left-3.5 top-3.5 text-cyan-400/80" />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                  className="theme-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition"
                 />
               </div>
 
-              {/* Password strength meter */}
               {password && (
                 <div className="mt-2 space-y-1">
                   <div className="flex gap-1 h-1.5">
-                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 1 ? 'bg-rose-500' : 'bg-slate-800'}`} />
-                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 3 ? 'bg-amber-500' : 'bg-slate-800'}`} />
-                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 4 ? 'bg-emerald-500' : 'bg-slate-800'}`} />
+                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 1 ? 'bg-rose-500' : 'bg-slate-300 dark:bg-slate-700'}`} />
+                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 3 ? 'bg-amber-500' : 'bg-slate-300 dark:bg-slate-700'}`} />
+                    <div className={`h-full flex-1 rounded-full ${strengthScore >= 4 ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-700'}`} />
                   </div>
-                  <p className="text-[10px] text-slate-400 text-right font-medium">
+                  <p className="text-[10px] text-right font-medium" style={{ color: 'var(--text-muted)' }}>
                     {strengthScore < 2 ? 'Weak' : strengthScore < 4 ? 'Medium' : 'Strong Password'}
                   </p>
                 </div>
@@ -140,11 +140,11 @@ export const Register = () => {
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1.5">Account Role</label>
+              <label className="text-xs font-semibold block mb-1.5" style={{ color: 'var(--text-muted)' }}>Account Role</label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
+                className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition"
               >
                 <option value="user">Standard User</option>
                 <option value="admin">System Administrator</option>
@@ -153,31 +153,27 @@ export const Register = () => {
 
             {role === 'admin' && (
               <div>
-                <label className="text-xs font-semibold text-purple-400 block mb-1.5">Admin Security Secret (Optional for Dev)</label>
+                <label className="text-xs font-semibold block mb-1.5" style={{ color: '#a78bfa' }}>Admin Security Secret</label>
                 <input
                   type="password"
                   value={adminSecret}
                   onChange={(e) => setAdminSecret(e.target.value)}
                   placeholder="Enter admin secret"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-purple-800/80 text-white text-sm focus:border-purple-500 focus:outline-none transition"
+                  className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-violet-500 focus:outline-none transition"
                 />
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-500/25 transition disabled:opacity-50 flex items-center justify-center gap-2"
-            >
+            <button type="submit" disabled={loading} className="theme-btn-primary w-full py-3 rounded-xl font-bold text-sm shadow-lg transition disabled:opacity-50 flex items-center justify-center gap-2">
               {loading ? 'Creating Account...' : 'Continue to OTP Verification'}
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
         </div>
 
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-xs" style={{ color: 'var(--text-muted)' }}>
           Already registered?{' '}
-          <Link to="/login" className="text-indigo-400 font-semibold hover:underline">
+          <Link to="/login" className="font-semibold hover:underline" style={{ color: '#a78bfa' }}>
             Sign in
           </Link>
         </p>

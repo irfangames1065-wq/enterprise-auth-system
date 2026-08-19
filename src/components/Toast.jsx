@@ -12,33 +12,31 @@ export const Toast = ({ message, type = 'info', onClose, duration = 4000 }) => {
 
   if (!message) return null;
 
-  const bgStyle =
+  const tone =
     type === 'success'
-      ? 'bg-emerald-950/90 border-emerald-500/40 text-emerald-200'
+      ? { bg: 'rgba(16, 185, 129, 0.12)', border: 'rgba(16,185,129,0.45)', icon: '#34d399', text: '#d1fae5' }
       : type === 'error'
-      ? 'bg-rose-950/90 border-rose-500/40 text-rose-200'
-      : 'bg-indigo-950/90 border-indigo-500/40 text-indigo-200';
+      ? { bg: 'rgba(244, 63, 94, 0.12)', border: 'rgba(244,63,94,0.45)', icon: '#fb7185', text: '#ffe4e6' }
+      : { bg: 'rgba(99, 102, 241, 0.12)', border: 'rgba(99,102,241,0.45)', icon: '#a78bfa', text: '#e0e7ff' };
 
   const icon =
     type === 'success' ? (
-      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+      <CheckCircle2 className="w-5 h-5 shrink-0" style={{ color: tone.icon }} />
     ) : type === 'error' ? (
-      <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
+      <AlertCircle className="w-5 h-5 shrink-0" style={{ color: tone.icon }} />
     ) : (
-      <Info className="w-5 h-5 text-indigo-400 shrink-0" />
+      <Info className="w-5 h-5 shrink-0" style={{ color: tone.icon }} />
     );
 
   return (
-    <div className="fixed top-20 right-4 z-[100] animate-bounce-short max-w-[min(92vw,28rem)] pointer-events-none sm:right-5 sm:top-20">
+    <div className="fixed top-20 right-4 z-[100] max-w-[min(92vw,28rem)] pointer-events-none sm:right-5 sm:top-20">
       <div
-        className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl ${bgStyle}`}
+        className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl"
+        style={{ background: tone.bg, borderColor: tone.border, boxShadow: '0 20px 45px rgba(15, 23, 42, 0.35)' }}
       >
         {icon}
-        <p className="text-sm font-medium pr-2 break-words">{message}</p>
-        <button
-          onClick={onClose}
-          className="p-1 hover:bg-white/10 rounded-lg transition text-gray-400 hover:text-white shrink-0"
-        >
+        <p className="text-sm font-medium pr-2 break-words" style={{ color: tone.text }}>{message}</p>
+        <button onClick={onClose} className="p-1 rounded-lg transition shrink-0" style={{ color: tone.text }}>
           <X className="w-4 h-4" />
         </button>
       </div>

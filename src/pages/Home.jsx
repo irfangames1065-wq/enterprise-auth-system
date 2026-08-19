@@ -47,153 +47,118 @@ export const Home = () => {
     <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-between py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
       <Toast message={toast?.message} type={toast?.type} onClose={() => setToast(null)} />
 
-      {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center space-y-6 pt-6"
+        className="robot-grid text-center space-y-6 pt-6 relative"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold backdrop-blur-md">
-          <Zap className="w-3.5 h-3.5 text-indigo-400" />
-          Production-Ready MERN Authentication Architecture
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="robot-status"><span className="dot" />System online</div>
+          <div className="robot-badge">Ai core active</div>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
-          Enterprise Security & Modern Authentication Platform
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-semibold backdrop-blur-md" style={{ background: 'var(--brand-primary-soft)', borderColor: 'var(--border-strong)', color: '#a78bfa' }}>
+          <Zap className="w-3.5 h-3.5 text-cyan-400" />
+          Production-Ready AI Authentication Stack
+        </div>
+
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-[-0.05em] max-w-5xl mx-auto leading-[0.95]" style={{ color: 'var(--heading)' }}>
+          MYAPP ROBOT CORE
+          <span className="mt-3 block text-transparent bg-clip-text" style={{ background: 'linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%)' }}>
+            Advanced AI Control System
+          </span>
         </h1>
 
-        <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-          Powered by React 18, Vite, Tailwind CSS, Node.js, Express, and MongoDB. Feature-complete with JWT tokens, OTP verification, bcrypt hashing, and role-based access controls.
+        <p className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+          Enterprise-grade security, intelligent automation, and premium robotic workflow orchestration for modern digital operations.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <Link
-            to="/register"
-            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm shadow-xl shadow-indigo-500/25 transition hover:scale-105 flex items-center gap-2"
-          >
+          <Link to="/register" className="theme-btn-primary px-6 py-3.5 rounded-2xl font-bold text-sm shadow-xl transition hover:scale-[1.02] flex items-center gap-2">
             Create Account
             <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link
-            to="/login"
-            className="px-6 py-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 font-semibold text-sm transition hover:bg-slate-850"
-          >
+          <Link to="/login" className="px-6 py-3.5 rounded-2xl font-semibold text-sm transition theme-btn-secondary">
             Sign In Portal
           </Link>
         </div>
       </motion.div>
 
-      {/* Feature Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-        <motion.div
-          whileHover={{ y: -5 }}
-          className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl space-y-3"
-        >
-          <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+        <motion.div whileHover={{ y: -5 }} className="robot-panel p-6 rounded-2xl space-y-3">
+          <div className="w-12 h-12 rounded-xl border flex items-center justify-center" style={{ background: 'rgba(34,211,238,0.1)', borderColor: 'rgba(34,211,238,0.25)', color: '#67e8f9' }}>
             <Lock className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-white">Dual JWT Tokens</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            15-minute Access Tokens paired with 7-day HttpOnly Refresh Tokens and secure automatic token rotation.
+          <h3 className="text-lg font-bold" style={{ color: 'var(--heading)' }}>Dual JWT Security</h3>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            15-minute access keys and secure refresh routing with hardened telemetry links and encrypted session management.
           </p>
         </motion.div>
 
-        <motion.div
-          whileHover={{ y: -5 }}
-          className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl space-y-3"
-        >
-          <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+        <motion.div whileHover={{ y: -5 }} className="robot-panel p-6 rounded-2xl space-y-3">
+          <div className="w-12 h-12 rounded-xl border flex items-center justify-center" style={{ background: 'rgba(124,58,237,0.1)', borderColor: 'rgba(168,85,247,0.3)', color: '#a78bfa' }}>
             <Key className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-white">OTP & Password Reset</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Nodemailer integration targeting <strong>irfangames1065@gmail.com</strong> with HTML templates and interactive demo fallbacks.
+          <h3 className="text-lg font-bold" style={{ color: 'var(--heading)' }}>OTP Verification</h3>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            Adaptive one-time passes and secure recovery for email delivery to <strong style={{ color: '#a78bfa' }}>irfangames1065@gmail.com</strong>.
           </p>
         </motion.div>
 
-        <motion.div
-          whileHover={{ y: -5 }}
-          className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl space-y-3"
-        >
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+        <motion.div whileHover={{ y: -5 }} className="robot-panel p-6 rounded-2xl space-y-3">
+          <div className="w-12 h-12 rounded-xl border flex items-center justify-center" style={{ background: 'rgba(16,185,129,0.1)', borderColor: 'rgba(16,185,129,0.25)', color: '#34d399' }}>
             <Shield className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-white">Role-Based Auth (RBAC)</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Granular user and admin route guards, system metrics panel, and user account management features.
+          <h3 className="text-lg font-bold" style={{ color: 'var(--heading)' }}>RBAC Firewall</h3>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            Role-based access, admin controls, and live user analytics to preserve secure, scalable access control.
           </p>
         </motion.div>
       </div>
 
-      {/* Direct Email Dispatch Card */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="p-8 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800/80 shadow-2xl backdrop-blur-2xl max-w-3xl mx-auto w-full"
+        className="robot-panel p-8 rounded-3xl max-w-3xl mx-auto w-full"
       >
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2.5 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-400">
-            <Mail className="w-5 h-5" />
+        <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl border" style={{ background: 'rgba(124,58,237,0.12)', borderColor: 'rgba(168,85,247,0.3)', color: '#a78bfa' }}>
+              <Mail className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold" style={{ color: 'var(--heading)' }}>Send Message to Email</h3>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Target recipient: <strong style={{ color: '#a78bfa' }}>irfangames1065@gmail.com</strong></p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-xl font-bold text-white">Send Message to Email</h3>
-            <p className="text-xs text-slate-400">Target Recipient: <strong className="text-indigo-300">irfangames1065@gmail.com</strong></p>
-          </div>
+          <div className="robot-status"><span className="dot" />Secure link</div>
         </div>
 
         <form onSubmit={handleSendMessage} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1">Your Name</label>
-              <input
-                type="text"
-                value={msgForm.name}
-                onChange={(e) => setMsgForm({ ...msgForm, name: e.target.value })}
-                placeholder="John Doe"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
-              />
+              <label className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Your Name</label>
+              <input type="text" value={msgForm.name} onChange={(e) => setMsgForm({ ...msgForm, name: e.target.value })} placeholder="John Doe" className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition" />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-400 block mb-1">Your Email</label>
-              <input
-                type="email"
-                value={msgForm.email}
-                onChange={(e) => setMsgForm({ ...msgForm, email: e.target.value })}
-                placeholder="you@example.com"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
-              />
+              <label className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Your Email</label>
+              <input type="email" value={msgForm.email} onChange={(e) => setMsgForm({ ...msgForm, email: e.target.value })} placeholder="you@example.com" className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition" />
             </div>
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1">Subject</label>
-            <input
-              type="text"
-              value={msgForm.subject}
-              onChange={(e) => setMsgForm({ ...msgForm, subject: e.target.value })}
-              placeholder="Inquiry / Feedback"
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition"
-            />
+            <label className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Subject</label>
+            <input type="text" value={msgForm.subject} onChange={(e) => setMsgForm({ ...msgForm, subject: e.target.value })} placeholder="Inquiry / Feedback" className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition" />
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1">Message</label>
-            <textarea
-              rows="3"
-              value={msgForm.message}
-              onChange={(e) => setMsgForm({ ...msgForm, message: e.target.value })}
-              placeholder="Write your message here... it will be sent directly to irfangames1065@gmail.com"
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:border-indigo-500 focus:outline-none transition resize-none"
-            />
+            <label className="text-xs font-semibold block mb-1" style={{ color: 'var(--text-muted)' }}>Message</label>
+            <textarea rows="3" value={msgForm.message} onChange={(e) => setMsgForm({ ...msgForm, message: e.target.value })} placeholder="Write your message here..." className="theme-input w-full px-4 py-2.5 rounded-xl text-sm focus:border-cyan-500 focus:outline-none transition resize-none" />
           </div>
 
-          <button
-            type="submit"
-            disabled={sending}
-            className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold text-sm transition shadow-lg shadow-indigo-500/20"
-          >
+          <button type="submit" disabled={sending} className="theme-btn-primary w-full py-3 rounded-xl font-bold text-sm transition disabled:opacity-50">
             {sending ? 'Sending Message...' : 'Dispatch Message to Email'}
           </button>
         </form>
